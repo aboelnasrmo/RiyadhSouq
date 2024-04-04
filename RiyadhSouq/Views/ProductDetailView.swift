@@ -11,7 +11,10 @@ import SwiftUI
 struct ProductDetailView: View {
   var product: Product
   @ObservedObject var cartViewModel: CartViewModel
-  @State private var isInCart = false
+  private var isInCart: Bool {
+        cartViewModel.isProductInCart(product)
+    }
+  
   
   var body: some View {
     ScrollView {
@@ -58,24 +61,19 @@ struct ProductDetailView: View {
       }
     }
     .navigationTitle(product.title)
-    .navigationBarItems(trailing: Button(action: {
-      DispatchQueue.main.async {
-        self.isInCart = self.cartViewModel.isProductInCart(product)
-        if !self.isInCart {
-          self.cartViewModel.addToCart(product)
-          self.isInCart = true
+            .navigationBarItems(trailing: Button(action: {
+                DispatchQueue.main.async {
+                    if !isInCart {
+                        cartViewModel.addToCart(product)
+                    }
+                }
+            }) {
+                Image(systemName: "cart.badge.plus")
+                    .foregroundColor(isInCart ? .blue : .primary)
+                    .scaleEffect(isInCart ? 1.5 : 1.0)
+            })
+            .animation(.easeInOut, value: isInCart)
         }
-      }
-    }) {
-      Image(systemName: "cart.badge.plus")
-        .foregroundColor(isInCart ? .blue : .primary)
-        .scaleEffect(isInCart ? 1.5 : 1.0)
-    })
-    .onAppear {
-      self.isInCart = self.cartViewModel.isProductInCart(product)
-    }
-    .animation(.easeInOut, value: isInCart)
-  }
 }
 
 
