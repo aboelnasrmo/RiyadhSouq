@@ -22,6 +22,11 @@ class CartViewModel: ObservableObject {
     }
   }
   
+  func removeFromCart(at offsets: IndexSet) {
+         items.remove(atOffsets: offsets)
+    saveCartItems()
+     }
+  
   func isProductInCart(_ product: Product) -> Bool {
     items.contains(where: { $0.id == product.id })
   }

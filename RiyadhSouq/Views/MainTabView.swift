@@ -17,7 +17,7 @@ struct MainTabView: View {
                     Label("Products", systemImage: "list.dash")
                 }
 
-            CartView(cartItems: cartViewModel.items)
+            CartView(cartViewModel: cartViewModel)
                 .tabItem {
                     Label("Cart", systemImage: "cart")
                 }
