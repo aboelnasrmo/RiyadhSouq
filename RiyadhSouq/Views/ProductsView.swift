@@ -36,7 +36,7 @@ struct ProductRowView: View {
 
 struct ProductsView: View {
   @ObservedObject var viewModel = ProductsViewModel()
-  var cartViewModel: CartViewModel // This needs to be provided
+  var cartViewModel: CartViewModel
   @State private var selectedProduct: Product?
   var body: some View {
     NavigationStack {
