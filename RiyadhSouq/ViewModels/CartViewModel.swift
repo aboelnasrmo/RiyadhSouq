@@ -9,24 +9,19 @@ import Foundation
 
 class CartViewModel: ObservableObject {
   @Published var items: [Product] = []
-  
   init() {
     loadCartItems()
   }
-  
-  
   func addToCart(_ product: Product) {
     if !isProductInCart(product) {
       items.append(product)
       saveCartItems()
     }
   }
-  
   func removeFromCart(at offsets: IndexSet) {
     items.remove(atOffsets: offsets)
     saveCartItems()
   }
-  
   func isProductInCart(_ product: Product) -> Bool {
     items.contains(where: { $0.id == product.id })
   }
@@ -39,7 +34,6 @@ class CartViewModel: ObservableObject {
       print("Failed to save cart items: \(error)")
     }
   }
-  
   private func loadCartItems() {
     let fileURL = getDocumentsDirectory().appendingPathComponent("cartItems.json")
     do {
@@ -49,7 +43,6 @@ class CartViewModel: ObservableObject {
       print("Failed to load cart items: \(error)")
     }
   }
-  
   private func getDocumentsDirectory() -> URL {
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]

@@ -9,14 +9,12 @@ import SwiftUI
 
 struct MainTabView: View {
   @StateObject var cartViewModel = CartViewModel()
-  
   var body: some View {
     TabView {
       ProductsView(cartViewModel: cartViewModel)
         .tabItem {
           Label("Products", systemImage: "list.dash")
         }
-      
       CartView(cartViewModel: cartViewModel)
         .tabItem {
           Label("Cart", systemImage: "cart")
@@ -24,7 +22,6 @@ struct MainTabView: View {
     }
   }
 }
-
 
 #Preview {
   MainTabView()

@@ -8,14 +8,14 @@
 import Foundation
 
 // Define a struct for the Category
-struct Category: Codable , Identifiable,Hashable{
+struct Category: Codable, Identifiable, Hashable {
   var id: Int
   var name: String
   var image: String
 }
 
 // Define a struct for the Product
-struct Product: Codable,Identifiable,Hashable {
+struct Product: Codable, Identifiable, Hashable {
   var id: Int
   var title: String
   var price: Int
@@ -23,7 +23,6 @@ struct Product: Codable,Identifiable,Hashable {
   var category: Category
   var images: [String]
 }
-
 // Define a type for an array of Products, for easy decoding
 typealias ProductList = [Product]
 

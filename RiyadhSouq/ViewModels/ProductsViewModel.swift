@@ -10,11 +10,9 @@ import Foundation
 @MainActor
 class ProductsViewModel: ObservableObject {
   @Published var products: [Product] = []
-  
   init() {
     loadProducts()
   }
-  
   func loadProducts() {
     // Check if the products have been loaded before
     if UserDefaults.standard.bool(forKey: "hasLoadedProductsOnce") {
@@ -26,7 +24,6 @@ class ProductsViewModel: ObservableObject {
       UserDefaults.standard.set(true, forKey: "hasLoadedProductsOnce")
     }
   }
-  
   private func loadProductsFromAPI() {
     Task {
       do {
@@ -37,8 +34,7 @@ class ProductsViewModel: ObservableObject {
         loadProductsFromCache()
       }
     }
-  }
-  
+}
   private func loadProductsFromCache() {
     Task {
       do {

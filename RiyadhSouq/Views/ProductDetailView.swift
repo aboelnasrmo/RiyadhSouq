@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUI
 
 struct ProductDetailView: View {
   var product: Product
@@ -14,8 +13,6 @@ struct ProductDetailView: View {
   private var isInCart: Bool {
     cartViewModel.isProductInCart(product)
   }
-  
-  
   var body: some View {
     ScrollView {
       VStack {
@@ -45,38 +42,34 @@ struct ProductDetailView: View {
           }
           .scaledToFit()
         }
-        
         // Product details
         Text(product.title)
           .font(.title)
           .padding()
-        
         Text(product.description)
           .font(.body)
           .padding()
-        
         Text("Price: \(product.price)")
           .font(.headline)
           .padding()
       }
     }
     .navigationTitle(product.title)
-    .navigationBarItems(trailing: Button(action: {
+    .navigationBarItems(trailing: Button {
       DispatchQueue.main.async {
-        if !isInCart {
-          cartViewModel.addToCart(product)
-        }
+          if !isInCart {
+              cartViewModel.addToCart(product)
+          }
       }
-    }) {
+  } label: {
       Image(systemName: "cart.badge.plus")
-        .foregroundColor(isInCart ? .blue : .primary)
-        .scaleEffect(isInCart ? 1.5 : 1.0)
-    })
+          .foregroundColor(isInCart ? .blue : .primary)
+          .scaleEffect(isInCart ? 1.5 : 1.0)
+  }
+)
     .animation(.easeInOut, value: isInCart)
   }
 }
-
-
 
 struct ProductDetailView_Previews: PreviewProvider {
   static var previews: some View {

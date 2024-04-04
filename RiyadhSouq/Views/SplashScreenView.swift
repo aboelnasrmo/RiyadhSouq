@@ -10,7 +10,6 @@ import SwiftUI
 struct SplashScreenView: View {
   @State private var isActive = false
   @State private var isAnimating = false
-  
   var body: some View {
     VStack {
       if isActive {

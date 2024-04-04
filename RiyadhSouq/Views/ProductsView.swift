@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProductRowView: View {
   var product: Product
-  
   var body: some View {
     HStack {
       // Display the product image
@@ -22,7 +21,6 @@ struct ProductRowView: View {
         .frame(width: 100, height: 100)
         .cornerRadius(8)
       }
-      
       // Display title and description
       VStack(alignment: .leading) {
         Text(product.title)
@@ -40,7 +38,6 @@ struct ProductsView: View {
   @ObservedObject var viewModel = ProductsViewModel()
   var cartViewModel: CartViewModel // This needs to be provided
   @State private var selectedProduct: Product?
-  
   var body: some View {
     NavigationStack {
       List(viewModel.products) { product in
@@ -55,9 +52,6 @@ struct ProductsView: View {
     }
   }
 }
-
-
-
 
 struct ProductsView_Previews: PreviewProvider {
   static var previews: some View {

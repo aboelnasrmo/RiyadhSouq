@@ -10,19 +10,15 @@ struct CartView: View {
   @ObservedObject var cartViewModel: CartViewModel
   @State private var promoCode = ""
   @State private var discountApplied = false
-  
   private var originalTotalPrice: Int {
     cartViewModel.items.reduce(0) { $0 + $1.price }
   }
-  
   private var discountAmount: Int {
     discountApplied ? 50 : 0
   }
-  
   private var discountedTotalPrice: Int {
     max(originalTotalPrice - (discountApplied ? 50 : 0), 0)
   }
-  
   var body: some View {
     VStack {
       List {
@@ -37,7 +33,6 @@ struct CartView: View {
               .frame(width: 60, height: 60)
               .cornerRadius(8)
             }
-            
             VStack(alignment: .leading) {
               Text(item.title)
                 .font(.headline)
@@ -48,12 +43,10 @@ struct CartView: View {
         }
         .onDelete(perform: cartViewModel.removeFromCart)
       }
-      
       HStack {
         TextField("Enter promo code", text: $promoCode)
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .padding()
-        
         Button("Apply") {
           if promoCode.lowercased() == "now" && !discountApplied {
             discountApplied = true
@@ -61,7 +54,6 @@ struct CartView: View {
         }
         .padding()
       }
-      
       HStack {
         Spacer()
         VStack(alignment: .trailing) {
@@ -71,7 +63,6 @@ struct CartView: View {
               .font(.body)
               .fontWeight(.bold)
               .foregroundColor(.secondary)
-            
             Text("Discount: $ \(discountAmount)")
               .font(.body)
               .fontWeight(.bold)
