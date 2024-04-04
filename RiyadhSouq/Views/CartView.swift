@@ -63,19 +63,25 @@ struct CartView: View {
       }
       
       // Total Price
-      VStack(alignment: .trailing) {
-        if discountApplied {
-          Text("Original Price: \(originalTotalPrice)")
-            .strikethrough()
-            .font(.body)
+      HStack {
+        Spacer()
+        VStack(alignment: .trailing) {
+          
+          
+          if discountApplied {
+            Text("Original Price: \(originalTotalPrice)")
+              .strikethrough()
+              .font(.body)
+              .fontWeight(.bold)
+              .foregroundColor(.secondary)
+          }
+          
+          Text("Total Price: \(discountedTotalPrice)")
+            .font(.headline)
             .fontWeight(.bold)
-            .foregroundColor(.secondary)
         }
-        Text("Total Price: \(discountedTotalPrice)")
-          .font(.headline)
-          .fontWeight(.bold)
+        .padding()
       }
-      .padding()
     }
     .navigationTitle("Cart")
   }
