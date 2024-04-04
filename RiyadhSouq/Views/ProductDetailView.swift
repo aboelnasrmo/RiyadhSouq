@@ -57,16 +57,16 @@ struct ProductDetailView: View {
     .navigationTitle(product.title)
     .navigationBarItems(trailing: Button {
       DispatchQueue.main.async {
-          if !isInCart {
-              cartViewModel.addToCart(product)
-          }
+        if !isInCart {
+          cartViewModel.addToCart(product)
+        }
       }
-  } label: {
+    } label: {
       Image(systemName: "cart.badge.plus")
-          .foregroundColor(isInCart ? .blue : .primary)
-          .scaleEffect(isInCart ? 1.5 : 1.0)
-  }
-)
+        .foregroundColor(isInCart ? .blue : .primary)
+        .scaleEffect(isInCart ? 1.5 : 1.0)
+    }
+    )
     .animation(.easeInOut, value: isInCart)
   }
 }
