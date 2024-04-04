@@ -15,6 +15,10 @@ struct CartView: View {
     cartViewModel.items.reduce(0) { $0 + $1.price }
   }
   
+  private var discountAmount: Int {
+    discountApplied ? 50 : 0
+  }
+  
   private var discountedTotalPrice: Int {
     max(originalTotalPrice - (discountApplied ? 50 : 0), 0)
   }
@@ -67,6 +71,11 @@ struct CartView: View {
               .font(.body)
               .fontWeight(.bold)
               .foregroundColor(.secondary)
+            
+            Text("Discount: $ \(discountAmount)")
+              .font(.body)
+              .fontWeight(.bold)
+              .foregroundColor(.red)
           }
           Text("Total Price: $ \(discountedTotalPrice)")
             .font(.headline)
