@@ -19,6 +19,9 @@
 		2046DCE02BBF4C8100C0C0AC /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2046DCDF2BBF4C8100C0C0AC /* ProductDetailView.swift */; };
 		2046DCE22BBF50C600C0C0AC /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2046DCE12BBF50C600C0C0AC /* CartViewModel.swift */; };
 		2046DCE42BBF633C00C0C0AC /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2046DCE32BBF633C00C0C0AC /* SplashScreenView.swift */; };
+		2046DCE72BBFE8E700C0C0AC /* CartItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2046DCE62BBFE8E700C0C0AC /* CartItemRow.swift */; };
+		2046DCE92BBFE90E00C0C0AC /* PromoCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2046DCE82BBFE90E00C0C0AC /* PromoCodeInput.swift */; };
+		2046DCEB2BBFE93600C0C0AC /* TotalPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2046DCEA2BBFE93600C0C0AC /* TotalPriceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		2046DCDF2BBF4C8100C0C0AC /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		2046DCE12BBF50C600C0C0AC /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		2046DCE32BBF633C00C0C0AC /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		2046DCE62BBFE8E700C0C0AC /* CartItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemRow.swift; sourceTree = "<group>"; };
+		2046DCE82BBFE90E00C0C0AC /* PromoCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCodeInput.swift; sourceTree = "<group>"; };
+		2046DCEA2BBFE93600C0C0AC /* TotalPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPriceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,9 @@
 				2046DCD92BBF4A2000C0C0AC /* ProductsView.swift */,
 				2046DCDB2BBF4C0E00C0C0AC /* CartView.swift */,
 				2046DCDF2BBF4C8100C0C0AC /* ProductDetailView.swift */,
+				2046DCE62BBFE8E700C0C0AC /* CartItemRow.swift */,
+				2046DCE82BBFE90E00C0C0AC /* PromoCodeInput.swift */,
+				2046DCEA2BBFE93600C0C0AC /* TotalPriceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,11 +229,14 @@
 				2046DCD62BBF49C400C0C0AC /* ProductsCall.swift in Sources */,
 				2046DCDE2BBF4C2800C0C0AC /* MainTabView.swift in Sources */,
 				2046DCDA2BBF4A2000C0C0AC /* ProductsView.swift in Sources */,
+				2046DCE72BBFE8E700C0C0AC /* CartItemRow.swift in Sources */,
 				2046DCE22BBF50C600C0C0AC /* CartViewModel.swift in Sources */,
 				2046DCD82BBF49EA00C0C0AC /* ProductsViewModel.swift in Sources */,
 				2046DCE42BBF633C00C0C0AC /* SplashScreenView.swift in Sources */,
 				2046DCC12BBF302B00C0C0AC /* RiyadhSouqApp.swift in Sources */,
 				2046DCE02BBF4C8100C0C0AC /* ProductDetailView.swift in Sources */,
+				2046DCEB2BBFE93600C0C0AC /* TotalPriceView.swift in Sources */,
+				2046DCE92BBFE90E00C0C0AC /* PromoCodeInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
