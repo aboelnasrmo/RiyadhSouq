@@ -10,8 +10,23 @@ import Foundation
 @MainActor
 class ProductsViewModel: ObservableObject {
   @Published var products: [Product] = []
+  enum SortCriteria {
+    case name
+    case price
+    case category
+  }
   init() {
     loadProducts()
+  }
+  func sortProducts(by criteria: SortCriteria) {
+      switch criteria {
+      case .name:
+          products.sort { $0.title < $1.title }
+      case .price:
+          products.sort { $0.price < $1.price }
+      case .category:
+          products.sort { $0.category.name < $1.category.name }
+      }
   }
   func loadProducts() {
     // Check if the products have been loaded before
@@ -34,7 +49,7 @@ class ProductsViewModel: ObservableObject {
         loadProductsFromCache()
       }
     }
-}
+  }
   private func loadProductsFromCache() {
     Task {
       do {
