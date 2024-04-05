@@ -9,8 +9,12 @@ import Foundation
 
 class CartViewModel: ObservableObject {
   @Published var items: [Product] = []
+  let promoCodes: [String: Int] = ["save50": 50, "summer": 30, "school": 40] // Example codes
   init() {
     loadCartItems()
+  }
+  func applyPromoCode(_ code: String) -> Int {
+    return promoCodes[code.lowercased()] ?? 0
   }
   func addToCart(_ product: Product) {
     if !isProductInCart(product) {
