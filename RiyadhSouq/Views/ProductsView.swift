@@ -13,16 +13,12 @@ struct ProductsView: View {
   @State private var selectedSortCriteria: ProductsViewModel.SortCriteria = .id
   var body: some View {
     NavigationStack {
-      List(viewModel.products) { product in
-        NavigationLink(destination: ProductDetailView(product: product, cartViewModel: cartViewModel)) {
-          ProductRowView(product: product)
+      ProductListView(products: viewModel.products, cartViewModel: cartViewModel)
+        .navigationTitle("Products")
+        .navigationBarItems(trailing: sortPicker)
+        .onChange(of: selectedSortCriteria) { newValue in
+          viewModel.sortProducts(by: newValue)
         }
-      }
-      .navigationTitle("Products")
-      .navigationBarItems(trailing: sortPicker)
-    }
-    .onChange(of: selectedSortCriteria) { newValue in
-        viewModel.sortProducts(by: newValue)
     }
   }
   var sortPicker: some View {
@@ -37,6 +33,19 @@ struct ProductsView: View {
       Label("Sort By", systemImage: "arrow.up.arrow.down")
         .labelStyle(IconOnlyLabelStyle())
         .imageScale(.small)
+    }
+  }
+}
+
+struct ProductListView: View {
+  var products: [Product]
+  var cartViewModel: CartViewModel
+
+  var body: some View {
+    List(products) { product in
+      NavigationLink(destination: ProductDetailView(product: product, cartViewModel: cartViewModel)) {
+        ProductRowView(product: product)
+      }
     }
   }
 }

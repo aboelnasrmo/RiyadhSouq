@@ -26,7 +26,7 @@ struct ProductDetailView: View {
         }
       }
     } label: {
-      Image(systemName: "cart.badge.plus")
+      Image(systemName: isInCart ? "cart.circle.fill" : "cart.badge.plus")
         .foregroundColor(isInCart ? .blue : .primary)
         .scaleEffect(isInCart ? 1.5 : 1.0)
     })
