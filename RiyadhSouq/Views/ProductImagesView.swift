@@ -26,7 +26,7 @@ struct ProductImagesView: View {
             }
           }
         }
-      }
+      }.padding(.horizontal, 4)
     } else if let imageUrl = images.first, let url = URL(string: imageUrl) {
       AsyncImage(url: url) { image in
         image.resizable()

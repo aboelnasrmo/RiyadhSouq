@@ -11,9 +11,17 @@ struct ProductDetails: View {
   let product: Product
   var body: some View {
     VStack {
-      Text(product.title)
-        .font(.title)
+      HStack {
+        Text("ID: \(product.id)")
+          .font(.subheadline)
+          .bold()
+          .padding()
+        Text(product.title)
+          .font(.subheadline)
+          .bold()
         .padding()
+        Spacer()
+      }
       HStack {
         Spacer()
         Text("Price: $ \(product.price)")

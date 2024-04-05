@@ -10,6 +10,8 @@ import SwiftUI
 struct SplashScreenView: View {
   @State private var isActive = false
   @State private var isAnimating = false
+  @StateObject var viewModel = ProductsViewModel()
+  var cartViewModel: CartViewModel
   var body: some View {
     VStack {
       if isActive {
@@ -28,7 +30,8 @@ struct SplashScreenView: View {
       }
     }
     .onAppear {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+      viewModel.loadProducts()
+      DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
         withAnimation {
           isActive = true
         }
@@ -40,6 +43,6 @@ struct SplashScreenView: View {
 
 struct SplashScreenView_Previews: PreviewProvider {
   static var previews: some View {
-    SplashScreenView()
+    SplashScreenView( cartViewModel: CartViewModel())
   }
 }

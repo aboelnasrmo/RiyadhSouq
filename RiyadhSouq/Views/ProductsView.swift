@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ProductsView: View {
-  @ObservedObject var viewModel = ProductsViewModel()
+  @StateObject var viewModel = ProductsViewModel()
   var cartViewModel: CartViewModel
-  @State private var selectedSortCriteria: ProductsViewModel.SortCriteria = .name
+  @State private var selectedSortCriteria: ProductsViewModel.SortCriteria = .id
   var body: some View {
     NavigationStack {
       List(viewModel.products) { product in
@@ -21,16 +21,14 @@ struct ProductsView: View {
       .navigationTitle("Products")
       .navigationBarItems(trailing: sortPicker)
     }
-    .onAppear {
-      viewModel.loadProducts()
-    }
-    .onChange(of: selectedSortCriteria, initial: .random()) { newValue, _ in
-      viewModel.sortProducts(by: newValue)
+    .onChange(of: selectedSortCriteria) { newValue in
+        viewModel.sortProducts(by: newValue)
     }
   }
   var sortPicker: some View {
     Menu {
       Picker("Sort By", selection: $selectedSortCriteria) {
+        Text("ID").tag(ProductsViewModel.SortCriteria.id)
         Text("Name").tag(ProductsViewModel.SortCriteria.name)
         Text("Price").tag(ProductsViewModel.SortCriteria.price)
         Text("Category").tag(ProductsViewModel.SortCriteria.category)

@@ -11,6 +11,7 @@ import Foundation
 class ProductsViewModel: ObservableObject {
   @Published var products: [Product] = []
   enum SortCriteria {
+    case id
     case name
     case price
     case category
@@ -19,14 +20,16 @@ class ProductsViewModel: ObservableObject {
     loadProducts()
   }
   func sortProducts(by criteria: SortCriteria) {
-      switch criteria {
-      case .name:
-          products.sort { $0.title < $1.title }
-      case .price:
-          products.sort { $0.price < $1.price }
-      case .category:
-          products.sort { $0.category.name < $1.category.name }
-      }
+    switch criteria {
+    case .id:
+        products.sort { $0.id < $1.id }
+    case .name:
+        products.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
+    case .price:
+        products.sort { $0.price < $1.price }
+    case .category:
+        products.sort { $0.category.name < $1.category.name }
+    }
   }
   func loadProducts() {
     // Check if the products have been loaded before
