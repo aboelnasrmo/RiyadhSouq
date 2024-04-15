@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CartItemRow: View {
-  let item: Product // Assuming Product is your data model
+  let item: Product
   var body: some View {
     HStack {
       if let imageUrl = item.images.first, let url = URL(string: imageUrl) {
@@ -31,11 +31,11 @@ struct CartItemRow: View {
 }
 
 struct CartItemRow_Previews: PreviewProvider {
-    static var previews: some View {
-      CartItemRow(item: Product(id: 0, title: "Product 1",
-                                price: 100, description: "Description 1",
-                                category: Category(id: 1, name: "",
-                                                   image: ""), images: ["https://example.com/image1.jpg"]))
-            .previewLayout(.sizeThatFits)
-    }
+  static var previews: some View {
+    CartItemRow(item: Product(id: 0, title: "Product 1",
+                              price: 100, description: "Description 1",
+                              category: Category(id: 1, name: "",
+                                                 image: ""), images: ["https://example.com/image1.jpg"]))
+    .previewLayout(.sizeThatFits)
+  }
 }

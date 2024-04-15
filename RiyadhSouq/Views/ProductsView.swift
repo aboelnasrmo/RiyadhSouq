@@ -19,6 +19,9 @@ struct ProductsView: View {
         .onChange(of: selectedSortCriteria) { newValue in
           viewModel.sortProducts(by: newValue)
         }
+        .refreshable {
+          viewModel.loadProducts()
+        }
     }
   }
   var sortPicker: some View {
@@ -40,7 +43,7 @@ struct ProductsView: View {
 struct ProductListView: View {
   var products: [Product]
   var cartViewModel: CartViewModel
-
+  
   var body: some View {
     List(products) { product in
       NavigationLink(destination: ProductDetailView(product: product, cartViewModel: cartViewModel)) {
