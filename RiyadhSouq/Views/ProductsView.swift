@@ -20,7 +20,7 @@ struct ProductsView: View {
           viewModel.sortProducts(by: newValue)
         }
         .refreshable {
-          viewModel.loadProducts()
+          await     viewModel.loadProducts()
         }
     }
   }

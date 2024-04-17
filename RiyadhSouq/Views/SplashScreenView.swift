@@ -30,10 +30,12 @@ struct SplashScreenView: View {
       }
     }
     .onAppear {
-      viewModel.loadProducts()
-      DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-        withAnimation {
-          isActive = true
+      Task {
+        await   viewModel.loadProducts()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+          withAnimation {
+            isActive = true
+          }
         }
       }
     }

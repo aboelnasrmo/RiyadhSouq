@@ -10,56 +10,65 @@ import Foundation
 @MainActor
 class ProductsViewModel: ObservableObject {
   @Published var products: [Product] = []
+  @Published var isLoading: Bool = false
+  @Published var errorMessage: String?
   enum SortCriteria {
-    case id
-    case name
-    case price
-    case category
+    case id, name, price, category
   }
   init() {
-    loadProducts()
+    Task {
+      await loadProducts()
+    }
   }
   func sortProducts(by criteria: SortCriteria) {
-    switch criteria {
-    case .id:
-        products.sort { $0.id < $1.id }
-    case .name:
-        products.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
-    case .price:
-        products.sort { $0.price < $1.price }
-    case .category:
-        products.sort { $0.category.name < $1.category.name }
+    products.sort {
+      switch criteria {
+      case .id:
+          return $0.id < $1.id
+      case .name:
+          return $0.title.localizedCompare($1.title) == .orderedAscending
+      case .price:
+          return $0.price < $1.price
+      case .category:
+          return $0.category.name < $1.category.name
+      }
     }
   }
-  func loadProducts() {
-    // Check if the products have been loaded before
+  func loadProducts() async {
+    isLoading = true
     if UserDefaults.standard.bool(forKey: "hasLoadedProductsOnce") {
-      // Load from cache
-      loadProductsFromCache()
+      await loadProductsFromCache()
     } else {
-      // Load from API and set the flag
-      loadProductsFromAPI()
-      UserDefaults.standard.set(true, forKey: "hasLoadedProductsOnce")
+      await loadProductsFromAPI()
     }
+    isLoading = false
   }
-  private func loadProductsFromAPI() {
-    Task {
-      do {
-        let fetchedProducts = try await APIService.shared.fetchProducts()
+  private func loadProductsFromAPI() async {
+    do {
+      let fetchedProducts = try await APIService.shared.fetchProducts()
+      if !fetchedProducts.isEmpty {
         self.products = fetchedProducts
         try CacheManager.shared.saveToCache(products: fetchedProducts)
-      } catch {
-        loadProductsFromCache()
+        UserDefaults.standard.set(true, forKey: "hasLoadedProductsOnce")
+      } else {
+        errorMessage = "No products found on the server."
+        await loadProductsFromCache()
       }
+    } catch {
+      errorMessage = "Failed to fetch products. Please check your internet connection."
+      await loadProductsFromCache()
     }
-  }
-  private func loadProductsFromCache() {
-    Task {
-      do {
-        self.products = try CacheManager.shared.loadFromCache()
-      } catch {
-        print("Error loading from cache: \(error)")
+}
+  private func loadProductsFromCache() async {
+    do {
+      let cachedProducts = try CacheManager.shared.loadFromCache()
+      if cachedProducts.isEmpty {
+        errorMessage = "No products available in cache. Please refresh."
+      } else {
+        self.products = cachedProducts
       }
+    } catch {
+      errorMessage = "Error loading products from cache: \(error.localizedDescription)"
     }
   }
 }

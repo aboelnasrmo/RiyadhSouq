@@ -21,9 +21,7 @@ struct CartView: View {
   var body: some View {
     VStack {
       if cartViewModel.items.isEmpty {
-        Text("Your cart is empty, please add some items.")
-          .font(.title)
-          .padding()
+        EmptyViewCart()
       } else {
         List {
           ForEach(cartViewModel.items, id: \.id) { item in
@@ -53,5 +51,16 @@ struct CartView: View {
 struct CartView_Previews: PreviewProvider {
   static var previews: some View {
     CartView(cartViewModel: CartViewModel())
+  }
+}
+
+struct EmptyViewCart: View {
+  var body: some View {
+    Text("Your cart is empty, please add some items.")
+      .font(.title2)
+      .fontWeight(.medium)
+      .foregroundColor(.secondary)
+      .multilineTextAlignment(.center)
+      .padding()
   }
 }
