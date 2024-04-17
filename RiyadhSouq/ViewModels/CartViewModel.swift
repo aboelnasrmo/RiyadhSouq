@@ -8,9 +8,14 @@
 import Foundation
 
 class CartViewModel: ObservableObject {
-  @Published var items: [Product] = []
+  @Published var items: [Product] {
+    didSet {
+      saveCartItems()
+    }
+  }
   let promoCodes: [String: Int] = ["save50": 50, "summer": 30, "school": 40] // Example codes
   init() {
+    items = []
     loadCartItems()
   }
   func applyPromoCode(_ code: String) -> Int {
@@ -19,12 +24,12 @@ class CartViewModel: ObservableObject {
   func addToCart(_ product: Product) {
     if !isProductInCart(product) {
       items.append(product)
-      saveCartItems()
     }
   }
-  func removeFromCart(at offsets: IndexSet) {
-    items.remove(atOffsets: offsets)
-    saveCartItems()
+  func removeFromCart(product: Product) {
+    if let index = items.firstIndex(where: { $0.id == product.id }) {
+      items.remove(at: index)
+    }
   }
   func isProductInCart(_ product: Product) -> Bool {
     items.contains(where: { $0.id == product.id })

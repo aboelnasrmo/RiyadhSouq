@@ -29,17 +29,24 @@ struct CartView: View {
           ForEach(cartViewModel.items, id: \.id) { item in
             CartItemRow(item: item)
           }
-          .onDelete(perform: cartViewModel.removeFromCart)
+          .onDelete(perform: removeItems)
         }
         PromoCodeInput(promoCode: $promoCode,
                        discountAmount: $discountAmount,
-                       showInvalidPromoCodeAlert: $showInvalidPromoCodeAlert, cartViewModel: cartViewModel)
+                       showInvalidPromoCodeAlert: $showInvalidPromoCodeAlert,
+                       cartViewModel: cartViewModel)
         TotalPriceView(originalTotalPrice: originalTotalPrice,
                        discountAmount: discountAmount,
                        discountedTotalPrice: discountedTotalPrice)
       }
     }
     .navigationTitle("Cart")
+  }
+  func removeItems(at offsets: IndexSet) {
+    for index in offsets {
+      let product = cartViewModel.items[index]
+      cartViewModel.removeFromCart(product: product)
+    }
   }
 }
 

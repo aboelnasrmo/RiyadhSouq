@@ -10,8 +10,7 @@ import SwiftUI
 struct ProductDetailView: View {
   var product: Product
   @ObservedObject var cartViewModel: CartViewModel
-  private var isInCart: Bool {
-    cartViewModel.isProductInCart(product)
+  private var isInCart: Bool { cartViewModel.isProductInCart(product)
 }
   var body: some View {
     ScrollView {
@@ -20,17 +19,20 @@ struct ProductDetailView: View {
     }
     .navigationTitle(product.title)
     .navigationBarItems(trailing: Button {
-      DispatchQueue.main.async {
-        if !isInCart {
-          cartViewModel.addToCart(product)
-        }
-      }
+      toggleCartStatus()
     } label: {
       Image(systemName: isInCart ? "cart.circle.fill" : "cart.badge.plus")
         .foregroundColor(isInCart ? .blue : .primary)
         .scaleEffect(isInCart ? 1.5 : 1.0)
+        .animation(.easeInOut, value: isInCart)
     })
-    .animation(.easeInOut, value: isInCart)
+  }
+  private func toggleCartStatus() {
+    if isInCart {
+      cartViewModel.removeFromCart(product: product)
+    } else {
+      cartViewModel.addToCart(product)
+    }
   }
 }
 
