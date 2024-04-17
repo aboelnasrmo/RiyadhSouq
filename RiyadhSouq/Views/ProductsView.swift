@@ -43,7 +43,6 @@ struct ProductsView: View {
 struct ProductListView: View {
   var products: [Product]
   var cartViewModel: CartViewModel
-  
   var body: some View {
     List(products) { product in
       NavigationLink(destination: ProductDetailView(product: product, cartViewModel: cartViewModel)) {

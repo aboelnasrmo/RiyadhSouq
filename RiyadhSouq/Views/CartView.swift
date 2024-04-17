@@ -20,18 +20,24 @@ struct CartView: View {
   }
   var body: some View {
     VStack {
-      List {
-        ForEach(cartViewModel.items, id: \.id) { item in
-          CartItemRow(item: item)
+      if cartViewModel.items.isEmpty {
+        Text("Your cart is empty, please add some items.")
+          .font(.title)
+          .padding()
+      } else {
+        List {
+          ForEach(cartViewModel.items, id: \.id) { item in
+            CartItemRow(item: item)
+          }
+          .onDelete(perform: cartViewModel.removeFromCart)
         }
-        .onDelete(perform: cartViewModel.removeFromCart)
+        PromoCodeInput(promoCode: $promoCode,
+                       discountAmount: $discountAmount,
+                       showInvalidPromoCodeAlert: $showInvalidPromoCodeAlert, cartViewModel: cartViewModel)
+        TotalPriceView(originalTotalPrice: originalTotalPrice,
+                       discountAmount: discountAmount,
+                       discountedTotalPrice: discountedTotalPrice)
       }
-      PromoCodeInput(promoCode: $promoCode,
-                     discountAmount: $discountAmount,
-                     showInvalidPromoCodeAlert: $showInvalidPromoCodeAlert, cartViewModel: cartViewModel)
-      TotalPriceView(originalTotalPrice: originalTotalPrice,
-                     discountAmount: discountAmount,
-                     discountedTotalPrice: discountedTotalPrice)
     }
     .navigationTitle("Cart")
   }
