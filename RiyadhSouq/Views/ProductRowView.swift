@@ -11,7 +11,6 @@ struct ProductRowView: View {
   var product: Product
   var body: some View {
     HStack {
-      // Display the product image
       if let imageUrl = product.images.first, let url = URL(string: imageUrl) {
         AsyncImage(url: url) { image in
           image.resizable()
@@ -21,14 +20,13 @@ struct ProductRowView: View {
         .frame(width: 100, height: 100)
         .cornerRadius(8)
       }
-      // Display title and description
       VStack(alignment: .leading) {
         Text(product.title)
           .font(.headline)
-          .lineLimit(1) // Truncate the title to one line
+          .lineLimit(1)
         Text(product.description)
           .font(.subheadline)
-          .lineLimit(2) // Truncate the description to two lines
+          .lineLimit(2)
       }
     }
   }
