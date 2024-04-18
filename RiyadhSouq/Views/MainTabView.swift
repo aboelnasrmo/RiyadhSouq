@@ -17,8 +17,9 @@ struct MainTabView: View {
         }
       CartView(cartViewModel: cartViewModel)
         .tabItem {
-          Label("Cart", systemImage: "cart")
+          Label("Cart", systemImage: cartViewModel.items.count == 0 ? "cart" : "cart.circle.fill")
         }
+        .badge(cartViewModel.items.count)
     }
   }
 }
