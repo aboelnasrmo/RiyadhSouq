@@ -11,16 +11,18 @@ struct ProductsView: View {
   @StateObject var viewModel = ProductsViewModel()
   var cartViewModel: CartViewModel
   @State private var selectedSortCriteria: ProductsViewModel.SortCriteria = .id
+  @State private var searchText = ""
   var body: some View {
     NavigationStack {
-      ProductListView(products: viewModel.products, cartViewModel: cartViewModel)
+      ProductListView(products: filteredProducts(), cartViewModel: cartViewModel)
         .navigationTitle("Products")
         .navigationBarItems(trailing: sortPicker)
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
         .onChange(of: selectedSortCriteria) { newValue in
           viewModel.sortProducts(by: newValue)
         }
         .refreshable {
-          await     viewModel.loadProducts()
+          await viewModel.loadProducts()
         }
     }
   }
@@ -36,6 +38,16 @@ struct ProductsView: View {
       Label("Sort By", systemImage: "arrow.up.arrow.down")
         .labelStyle(IconOnlyLabelStyle())
         .imageScale(.small)
+    }
+  }
+  func filteredProducts() -> [Product] {
+    if searchText.isEmpty {
+      return viewModel.products
+    } else {
+      return viewModel.products.filter { product in
+        product.title.lowercased().contains(searchText.lowercased()) ||
+        product.description.lowercased().contains(searchText.lowercased())
+      }
     }
   }
 }
