@@ -1,4 +1,5 @@
 
+![videoreadme](https://github.com/aboelnasrmo/RiyadhSouq/assets/48453299/f443a08f-5c48-4e87-864a-66b794bde9ee)
 # RiyadhSouq App
 RiyadhSouq is a test app during Kodeco bootcamp for iOS, built using SwiftUI. It offers users the ability to browse and purchase a wide range of products, manage their shopping cart, and utilize promotional codes to obtain discounts. The app's responsive design ensures a seamless shopping experience, enhancing user engagement through a well-organized product display and efficient navigation.
 
