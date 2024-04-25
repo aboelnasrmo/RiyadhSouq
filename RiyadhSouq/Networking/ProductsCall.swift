@@ -12,10 +12,30 @@ class APIService {
   private init() {}
   private let url = URL(string: "https://api.escuelajs.co/api/v1/products")!
   func fetchProducts() async throws -> [Product] {
-    let (data, _) = try await URLSession.shared.data(from: url)
+    do {
+      // First, try fetching from the API
+      let (data, _) = try await URLSession.shared.data(from: url)
+      let products = try JSONDecoder().decode([Product].self, from: data)
+      try CacheManager.shared.saveToCache(products: products)
+      return products
+    } catch {
+      do {
+        return try CacheManager.shared.loadFromCache()
+      } catch {
+        return try loadProductsFromBundle()
+      }
+    }
+  }
+  private func loadProductsFromBundle() throws -> [Product] {
+    guard let fileURL = Bundle.main.url(forResource: "products", withExtension: "json"),
+          let data = try? Data(contentsOf: fileURL) else {
+      throw NSError(domain: "ProductsViewModel", code: 404,
+                    userInfo: [NSLocalizedDescriptionKey: "Local product data not found in bundle."])
+    }
     return try JSONDecoder().decode([Product].self, from: data)
   }
 }
+
 class CacheManager {
   static let shared = CacheManager()
   private init() {}
