@@ -13,7 +13,6 @@ class APIService {
   private let url = URL(string: "https://api.escuelajs.co/api/v1/products")!
   func fetchProducts() async throws -> [Product] {
     do {
-      // First, try fetching from the API
       let (data, _) = try await URLSession.shared.data(from: url)
       let products = try JSONDecoder().decode([Product].self, from: data)
       try CacheManager.shared.saveToCache(products: products)
