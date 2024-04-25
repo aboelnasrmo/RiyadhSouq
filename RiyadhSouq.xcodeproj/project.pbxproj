@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20296FDA2BD1B85900470EC5 /* RiyadhSouqTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20296FD92BD1B85900470EC5 /* RiyadhSouqTests.swift */; };
 		20296FE12BD1B95300470EC5 /* CartCalculationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20296FE02BD1B95300470EC5 /* CartCalculationTest.swift */; };
+		20335DAF2BDADF810038E972 /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = 20335DAE2BDADF810038E972 /* products.json */; };
 		2046DCC12BBF302B00C0C0AC /* RiyadhSouqApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2046DCC02BBF302B00C0C0AC /* RiyadhSouqApp.swift */; };
 		2046DCC52BBF302C00C0C0AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2046DCC42BBF302C00C0C0AC /* Assets.xcassets */; };
 		2046DCC82BBF302C00C0C0AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2046DCC72BBF302C00C0C0AC /* Preview Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		20296FD72BD1B85900470EC5 /* RiyadhSouqTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiyadhSouqTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20296FD92BD1B85900470EC5 /* RiyadhSouqTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiyadhSouqTests.swift; sourceTree = "<group>"; };
 		20296FE02BD1B95300470EC5 /* CartCalculationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCalculationTest.swift; sourceTree = "<group>"; };
+		20335DAE2BDADF810038E972 /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
 		2046DCBD2BBF302B00C0C0AC /* RiyadhSouq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RiyadhSouq.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2046DCC02BBF302B00C0C0AC /* RiyadhSouqApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiyadhSouqApp.swift; sourceTree = "<group>"; };
 		2046DCC42BBF302C00C0C0AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				2046DCCF2BBF305C00C0C0AC /* Views */,
 				2046DCC02BBF302B00C0C0AC /* RiyadhSouqApp.swift */,
 				2046DCC42BBF302C00C0C0AC /* Assets.xcassets */,
+				20335DAE2BDADF810038E972 /* products.json */,
 				2046DCC62BBF302C00C0C0AC /* Preview Content */,
 			);
 			path = RiyadhSouq;
@@ -263,6 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20335DAF2BDADF810038E972 /* products.json in Resources */,
 				2046DCC82BBF302C00C0C0AC /* Preview Assets.xcassets in Resources */,
 				2046DCC52BBF302C00C0C0AC /* Assets.xcassets in Resources */,
 			);
